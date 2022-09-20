@@ -3,10 +3,14 @@
 const express = require('express');
 const notFound = require('./error-handlers/404');
 const errorHandler = require('./error-handlers/500');
+const stamper = require('./middleware/stamper');
+
 const PORT = process.env.PORT || 3002;
 
 // design principle:  singleton
 const app = express();
+
+app.use(stamper);
 
 app.get('/', (req, res, next) => {
   res.status(200).send('Hello World');
@@ -14,6 +18,21 @@ app.get('/', (req, res, next) => {
 
 app.get('/bad', (req, res, next) => {
   next('this is a bad route');
+});
+
+app.get('/pet', (req, res, next) => {
+    let petName = req.query;
+    console.log(petName);
+
+    if(petName){
+        res.status(200).send('This works');
+    } else {
+
+    }
+
+
+
+
 });
 
 app.use('*', notFound);

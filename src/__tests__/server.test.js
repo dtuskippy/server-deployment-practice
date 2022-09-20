@@ -1,7 +1,7 @@
 'use strict';
 
 const supertest = require('supertest');
-const { app } = require('../app');
+const { app } = require('../server');
 const request = supertest(app);
 
 describe('API Server', () => {
@@ -23,4 +23,15 @@ describe('API Server', () => {
     expect(response.text).toEqual('Hello World');
 
   });
+
+  it('handles \'/pet\' route without query param correctly', async () => {
+    const response = await request.get('/pet');
+    expect(response.text).toEqual('What a great animal companion');
+  });
+
+  it('handles \'/pet\' route without query param correctly', async () => {
+    const response = await request.get(`/pet&petName=Lucky`);
+    expect(response.text).toEqual(`${petName} is awesome`);
+  });
+
 });

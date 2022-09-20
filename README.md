@@ -8,9 +8,11 @@
     * CI/CD with Github and Heroku
 
 ### Setup
+
     * PORT: 3002
 
 ### Running the app
+
     * npm start
     * Endpoint: '/'
         * returns 'Hello World'
@@ -20,8 +22,8 @@
         * returns object with 404 error
 
 ### Tests
-    * npm test
 
+    * npm test
 
 ### UML: CI/CD Process
 
